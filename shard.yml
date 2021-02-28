@@ -2,7 +2,7 @@ name: things-base
 version: 0.1.0
 
 authors:
-  - your-name-here <your-email-here>
+  - Dillon Fagan <dillonfagan@pm.me>
 
 targets:
   things-base:
