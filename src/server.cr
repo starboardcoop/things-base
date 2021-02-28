@@ -1,7 +1,9 @@
 require "kemal"
+require "./configuration"
 require "./api/airtable"
 
-base = API::Airtable.new "key56RuO6gkPkLBnG", "appBYEa4vGVLAXEbe"
+config = Configuration.load
+base = API::Airtable.new config.api_key, config.base
 
 before_all do |env|
   env.response.content_type = "application/json"
