@@ -1,23 +1,5 @@
 require "kemal"
-require "http/client"
-require "http/headers"
-
-module API
-  class Airtable
-    @headers : HTTP::Headers
-    @base : String
-
-    def initialize(api_key : String, @base : String)
-      @headers = HTTP::Headers.new
-      @headers.add "Authorization", "Bearer #{api_key}"
-    end
-
-    def all(table : String) : String
-      api_response = HTTP::Client.get "https://api.airtable.com/v0/#{@base}/#{table}", @headers
-      api_response.body
-    end
-  end
-end
+require "./api/airtable"
 
 base = API::Airtable.new "key56RuO6gkPkLBnG", "appBYEa4vGVLAXEbe"
 
@@ -30,7 +12,7 @@ get "/" do
 end
 
 get "/things" do
-  base.all "Things"
+  base.in("Things").all
 end
 
 Kemal.run
